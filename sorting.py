@@ -101,20 +101,22 @@ class Test_100(unittest.TestCase):
 # Performance testing
 #
 
-list = MyList([randrange(-100,100) for x in range(10000)])
-naive_times = []
-high_low_times = []
-selection_times = []
+def run_performance_tests(num_tests):
 
-for x in range(10):
-    naive_times.append(list.naive_sort()[1])
-    high_low_times.append(list.high_low_middle_sort()[1])
-    selection_times.append(list.selection_sort()[1])
+    list = MyList([randrange(-100,100) for x in range(num_tests)])
+    naive_times = []
+    high_low_times = []
+    selection_times = []
 
-from numpy import average
-print "naive sort averaged %s seconds" % average(naive_times)
-print "high_low sort averaged %s seconds" % average(high_low_times)
-print "selection sort averaged %s seconds" % average(selection_times)
+    for x in range(10):
+        naive_times.append(list.naive_sort()[1])
+        high_low_times.append(list.high_low_middle_sort()[1])
+        selection_times.append(list.selection_sort()[1])
+
+    from numpy import average
+    print "naive sort averaged %s seconds" % average(naive_times)
+    print "high_low sort averaged %s seconds" % average(high_low_times)
+    print "selection sort averaged %s seconds" % average(selection_times)
 
 
 
@@ -122,6 +124,9 @@ print "selection sort averaged %s seconds" % average(selection_times)
 # print list.naive_sort()[0]
 # list.sort()
 # print list
+
+if __name__=="__main__":
+    run_performance_tests(100)
 
 
 
